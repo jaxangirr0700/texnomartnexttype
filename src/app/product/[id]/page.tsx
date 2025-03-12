@@ -60,18 +60,16 @@ function ProductPage() {
   }, []);
   return (
     <>
-      <Navbar />
-
       <div className="max-w-[1440px] m-auto">
         <div className="flex  items-center w-full justify-center">
           <p>{product?.brand}</p>
           <Image
-            width={100}
-            height={100}
+            width={150}
+            height={150}
             src={product?.large_images[0] || "asda"}
             alt={product?.brand || "asd"}
           />
-          <p>{product?.sale_price}</p>
+          <p>{product?.sale_price} So'm</p>
         </div>
       </div>
     </>

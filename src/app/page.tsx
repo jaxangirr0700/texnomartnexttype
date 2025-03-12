@@ -7,9 +7,7 @@ import Catalog from "@/components/Catalog";
 export default function Home() {
   return (
     <div>
-      <Navbar />
       <div className="max-w-[1440px] m-auto">
-        <HomePage />
         <Catalog />
         <Products />
       </div>

@@ -1,33 +1,46 @@
 "use client";
 import Navbar from "@/components/Navbar";
+import ProduktCard from "@/components/produktcard/page";
 import axios from "axios";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 type CatalogProductType = {
-  has_child: boolean;
-  id: number;
-  image: string;
-  name: string;
-  slug: string;
+  brands: [];
+  filter: [];
+  pagination: PaginationType;
+
+  price: PriceType;
+
+  products: [];
+  sale_months: [];
+  stickers: [];
+  total: number;
 };
+type PaginationType = {
+  current_page: number;
+  page_size: number;
+  total_count: number;
+  total_page: number;
+};
+type PriceType = { max_price: null; min_price: null };
 
 function Page() {
-  const params = useParams();
-  const [catalogProducts, setCatalogProducts] = useState<CatalogProductType[]>(
-    []
-  );
+  const { slug } = useParams();
+  const [catalogProducts, setCatalogProducts] = useState<CatalogProductType>();
   const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState<number>(2);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `https://gw.texnomart.uz/api/web/v1/category/chips?slug=${params.slug}`
+          `https://gw.texnomart.uz/api/common/v1/search/filters?category_all=${slug}&sort=-order_count&page=${page}`
         );
-        console.log(res.data.data.categories);
-        setCatalogProducts(res.data.data.categories);
+
+        // console.log(res.data.data);
+        setCatalogProducts(res.data.data);
       } catch (err) {
         console.error(err);
       } finally {
@@ -36,12 +49,11 @@ function Page() {
     };
 
     fetchProducts();
-  }, [params.slug]);
+  }, [slug, page]);
 
-  if (loading) {
+  if (loading || !catalogProducts) {
     return (
       <>
-        <Navbar />
         <div className="max-w-[1440px] m-auto">Loading...</div>
       </>
     );
@@ -49,24 +61,12 @@ function Page() {
 
   return (
     <>
-      <Navbar />
       <div className="max-w-[1440px] m-auto">
-        <ul className="grid grid-cols-8 w-full">
-          {catalogProducts.map((product) => (
-            <li key={product.id}>
-              <span>{product.name}</span>
-              {product.image && (
-                <Image
-                  width={80}
-                  height={80}
-                  src={product.image}
-                  alt={product.name}
-                />
-              )}
-              {/* <p>{product.slug}</p> */}
-            </li>
-          ))}
-        </ul>
+        <div className="grid grid-cols-4 w-full">
+          {catalogProducts.products.map((item, index) => {
+            return <ProduktCard item={item} key={index} />;
+          })}
+        </div>
       </div>
     </>
   );

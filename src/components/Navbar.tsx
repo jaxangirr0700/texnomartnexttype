@@ -10,6 +10,9 @@ import { ReactNode, useState } from "react";
 import NavRight from "./NavRight";
 import { log } from "node:console";
 import Link from "next/link";
+import HomePage from "./HomePage";
+import Catalog from "./Catalog";
+import NavInputSearch from "./NavInputSearch";
 
 function Navbar() {
   const [katalog, setKatalog] = useState(false);
@@ -124,7 +127,7 @@ function Navbar() {
   );
   return (
     <>
-      <nav className=" bg-gray-800  w-[100vw]">
+      <nav className=" bg-slate-800  w-[100vw]">
         <div className="w-[1440px] m-auto flex justify-between items-center text-white">
           <div className="flex justify-between items-center">
             <a href="" className="flex items-center mr-5">
@@ -144,7 +147,7 @@ function Navbar() {
           </div>
           <div className="flex justify-between gap-10 items-center">
             <a href="">Aloqa Markazi:+998712099944</a>
-            <div className="flex  items-center gap-2 border border-gray-400 rounded-xl">
+            <div className="flex  items-center gap-2 border border-slate-400 rounded-xl">
               <Dropdown menu={{ items: menuProps }}>
                 <Button
                   color="default"
@@ -163,115 +166,87 @@ function Navbar() {
         </div>
       </nav>
 
-      <div className="w-[1440px] m-auto flex justify-between items-center pt-5 pb-5">
-        <div className="flex items-center gap-10 ">
-          <Link href={`/`} className="text-4xl font-bold cursor-pointer">
-            Texnomart*
-          </Link>
-          <button
-            onClick={() => {
-              setKatalog(!katalog);
-            }}
-            className="bg-yellow-400 px-2 py-3 rounded-xl flex items-center gap-1 font-mono font-bold cursor-pointer"
-          >
-            {katalog ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width={30}
-                height={30}
-                color={"#000000"}
-                fill={"none"}
-              >
-                <path
-                  d="M18 6L12 12M12 12L6 18M12 12L18 18M12 12L6 6"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width={30}
-                height={30}
-                color={"#000000"}
-                fill={"none"}
-              >
-                <path
-                  d="M4 5L20 5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M4 12L20 12"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M4 19L20 19"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            )}
-            Katalog
-          </button>
-        </div>
-        <div className="w-[650px] flex items-center border border-yellow-400 pl-2  rounded-xl">
-          <input
-            type="text"
-            placeholder="Search"
-            className="w-full px-3 border-0 outline-0"
-          />{" "}
-          <div className="py-2 px-3 bg-yellow-300 rounded-xl">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width={24}
-              height={24}
-              color={"#000000"}
-              fill={"none"}
+      <div className="w-[1440px] m-auto flex flex-col justify-between items-center pt-5 pb-5">
+        <div className="flex  items-center justify-between gap-10 w-[1440px] ">
+          <div className="flex items-center gap-10">
+            <Link href={`/`} className="text-4xl font-bold cursor-pointer">
+              Texnomart*
+            </Link>
+            <button
+              onClick={() => {
+                setKatalog(!katalog);
+              }}
+              className="bg-yellow-400 px-2 py-3 rounded-xl flex items-center gap-1 font-mono font-bold cursor-pointer"
             >
-              <path
-                d="M17.5 17.5L22 22"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20C15.9706 20 20 15.9706 20 11Z"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinejoin="round"
-              />
-            </svg>
+              {katalog ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width={30}
+                  height={30}
+                  color={"#000000"}
+                  fill={"none"}
+                >
+                  <path
+                    d="M18 6L12 12M12 12L6 18M12 12L18 18M12 12L6 6"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width={30}
+                  height={30}
+                  color={"#000000"}
+                  fill={"none"}
+                >
+                  <path
+                    d="M4 5L20 5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M4 12L20 12"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M4 19L20 19"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
+              Katalog
+            </button>
+          </div>
+          <NavInputSearch />
+          <div className="flex gap-5">
+            <NavRight>
+              <UserOutlined />
+              <span>Kirish</span>
+            </NavRight>{" "}
+            <NavRight>
+              <HeartOutlined />
+              <span> Sevimlilar</span>{" "}
+            </NavRight>{" "}
+            <NavRight>
+              <ShoppingCartOutlined />
+              <span>Savatcha</span>
+            </NavRight>
           </div>
         </div>
-
-        <div className="flex gap-5">
-          <NavRight>
-            <UserOutlined />
-            <span>Kirish</span>
-          </NavRight>{" "}
-          <NavRight>
-            <HeartOutlined />
-            <span> Sevimlilar</span>{" "}
-          </NavRight>{" "}
-          <NavRight>
-            <ShoppingCartOutlined />
-            <span>Savatcha</span>
-          </NavRight>
-        </div>
+        <HomePage />
       </div>
     </>
   );

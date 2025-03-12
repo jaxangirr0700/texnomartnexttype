@@ -32,7 +32,7 @@ function Catalog() {
     axios
       .get(`https://gw.texnomart.uz/api/web/v1/header/popup-menu-catalog`)
       .then((res) => {
-        console.log(res.data.data.data);
+        // console.log(res.data.data.data);
         setCatalog(res.data.data.data);
       })
       .catch((err) => {
