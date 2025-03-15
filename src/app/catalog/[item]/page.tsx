@@ -75,7 +75,9 @@ type MainCharacter = {
 function Page() {
   const [loader, setLoader] = useState(true);
   const [product, setProduct] = useState<ProductType | undefined>(undefined);
-  const [page, setPage] = useState<number>(2);
+  const [page, setPage] = useState<number>(1);
+
+  // https://gw.texnomart.uz/api/web/v1/category/popular-categories?slug=kompyuternaya-tehnika
 
   useEffect(() => {
     axios

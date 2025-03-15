@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import ProduktCard from "@/components/produktcard/page";
+import { Pagination } from "antd";
 import axios from "axios";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -30,7 +31,7 @@ function Page() {
   const { slug } = useParams();
   const [catalogProducts, setCatalogProducts] = useState<CatalogProductType>();
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState<number>(2);
+  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -39,7 +40,7 @@ function Page() {
           `https://gw.texnomart.uz/api/common/v1/search/filters?category_all=${slug}&sort=-order_count&page=${page}`
         );
 
-        // console.log(res.data.data);
+        console.log(res.data.data);
         setCatalogProducts(res.data.data);
       } catch (err) {
         console.error(err);
@@ -67,6 +68,13 @@ function Page() {
             return <ProduktCard item={item} key={index} />;
           })}
         </div>
+        <Pagination
+          total={catalogProducts.total}
+          showTotal={(total) => `Total ${total} items`}
+          defaultPageSize={20}
+          current={page}
+          onChange={(pageNumber) => setPage(pageNumber)}
+        />
       </div>
     </>
   );
