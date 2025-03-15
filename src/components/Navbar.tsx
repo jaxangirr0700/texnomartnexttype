@@ -6,13 +6,11 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Button, Dropdown, Menu, Space } from "antd";
-import { ReactNode, useState } from "react";
-import NavRight from "./NavRight";
-import { log } from "node:console";
 import Link from "next/link";
+import { ReactNode, useState } from "react";
 import HomePage from "./HomePage";
-import Catalog from "./Catalog";
 import NavInputSearch from "./NavInputSearch";
+import NavRight from "./NavRight";
 
 function Navbar() {
   const [katalog, setKatalog] = useState(false);

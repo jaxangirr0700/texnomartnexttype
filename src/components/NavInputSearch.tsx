@@ -81,7 +81,7 @@ type ProductsProductType = {
   name: string;
 };
 function NavInputSearch() {
-  const [input, setInput] = useState("samsung");
+  const [input, setInput] = useState("");
   const [loading, setLoading] = useState<boolean>(true);
   const [products, setProducts] = useState<ProductCPM_Type | null>();
   useEffect(() => {
